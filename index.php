@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once ("logica/Persona.php");
 require_once ("logica/Admin.php");
 require_once ("logica/Cliente.php");

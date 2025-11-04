@@ -34,9 +34,5 @@ class Admin extends Persona {
         $this -> apellido = $tupla[1];
         $this -> correo = $tupla[2];
     }
-    
 }
-
-
-
 ?>
