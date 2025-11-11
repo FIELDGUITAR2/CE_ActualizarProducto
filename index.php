@@ -26,6 +26,7 @@ if (isset($_GET["salir"])) {
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
 </head>
 <?php 
 
@@ -64,4 +65,25 @@ if(!isset($_GET["pid"])){
 ?>
 
 
+=======
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+"></script>
+</head>
+<?php
+if (! isset($_GET["pid"])) {
+    include ("presentacion/inicio.php");
+} else {
+    $pid = base64_decode($_GET["pid"]);
+    if (isset($_SESSION["id"])) {
+        include ($pid);
+    } else {
+        include ($pid);
+        // TODO reparar esto
+    }
+}
+?>
+
+
+>>>>>>> refs/remotes/origin/main
 </html>

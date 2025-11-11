@@ -89,18 +89,23 @@ class Producto{
         $conexion -> cerrar();
         return $productos;
     }
-    public function consultarProv(){
+
+    public function buscar($filtro){
         $conexion = new Conexion();
         $conexion -> abrir();
-        $proveedorDAO = new ProveedorDAO();
-        $conexion -> ejecutar($proveedorDAO -> consultar());
-        $proveedores = array();
-        while ($registro = $conexion -> registro()){
-            $p = new Proveedor($registro[0], $registro[1]);
-            array_push($proveedores, $p);
+        $productoDAO = new ProductoDAO();
+        $conexion -> ejecutar($productoDAO -> buscar($filtro));
+        $productos = array();
+        while (($tupla = $conexion -> registro()) != null){
+            $proveedor = new Proveedor($tupla[5]);
+            $proveedor -> consultarPorId();
+            $tipoProducto = new TipoProducto($tupla[6]);
+            $tipoProducto -> consultarPorId();
+            $producto = new Producto($tupla[0], $tupla[1], $tupla[2], $tupla[3], $tupla[4], $proveedor, $tipoProducto);
+            array_push($productos, $producto);
         }
         $conexion -> cerrar();
-        return $proveedores;
+        return $productos;
     }
 
     public function actualizarProducto()
