@@ -5,11 +5,14 @@ class Conexion{
     private $resultado;
     
     public function abrir(){
+        /*
         if($_SERVER['REMOTE_ADDR'] == "::1"){
             $this -> conexion = new mysqli("localhost", "root", "", "cocina_etilica");
         }else{
             $this -> conexion = new mysqli("localhost", "itiud_cocinaetilica", "UXpieQ728%", "itiud_cocinaetilica");
         }
+        */
+        $this -> conexion = new mysqli("localhost", "root", "", "cocina_etilica");
     }
     
     public function cerrar(){
@@ -29,6 +32,5 @@ class Conexion{
     }
     
 }
-
 
 ?>

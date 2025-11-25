@@ -98,7 +98,4 @@ class Cliente extends Persona {
         $conexion -> cerrar();
     }
 }
-
-
-
 ?>

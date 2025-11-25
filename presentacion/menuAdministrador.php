@@ -46,6 +46,7 @@
 						<li><a class="dropdown-item" href="#">Something else here</a></li>
 					</ul></li>
 			</ul>
+			
 			<!-- Dropdown con nombre y apellido -->
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item dropdown"><a

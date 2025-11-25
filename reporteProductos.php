@@ -1,4 +1,8 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require ("fpdf/fpdf.php");
 require ("logica/Producto.php");
 require ("logica/Proveedor.php");
@@ -25,11 +29,22 @@ $pdf -> Cell(56, 10, "Imagen", 1, 1, "C");
 $pdf -> SetFont("Times", "", 14);
 
 foreach ($productos as $p){
-    $pdf -> Cell(80, 10, iconv("UTF-8", "iso-8859-1", $p -> getNombre()) , 1, 0, "L");
-    $pdf -> Cell(30, 10, $p -> getTamano() , 1, 0, "C");
-    $pdf -> Cell(30, 10, $p -> getPrecio(), 1, 0, "R");
-    $pdf -> Cell(56, 10, "Imagen", 1, 1, "C");
+    $pdf->Cell(80, 10, iconv("UTF-8", "iso-8859-1", $p->getNombre()), 1, 0, "L");
+    $pdf->Cell(30, 10, $p->getTamano(), 1, 0, "C");
+    $pdf->Cell(30, 10, $p->getPrecio(), 1, 0, "R");
+
+    $x = $pdf->GetX();
+    $y = $pdf->GetY();
+
+    $pdf->Cell(56, 10, "", 1, 1, "C");
+
+    $imagen = $p->getImagen();
+    if (!empty("img/".$imagen) && file_exists($imagen)) {
+        $pdf->Image("img/".$imagen, $x+10, $y+2, 15, 0);
+    }
 }
+
+
 
 
 $pdf -> Output("I", "reporte.pdf", true);
