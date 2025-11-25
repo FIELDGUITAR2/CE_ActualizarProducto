@@ -7,8 +7,19 @@ if(isset($_POST["registrar"])){
     $fechaNacimiento = $_POST["fechaNacimiento"];
     $correo = $_POST["correo"];
     $clave = $_POST["clave"];
-    $cliente = new Cliente("", $nombre, $apellido, $correo, $clave, $fechaNacimiento);
+    $cliente = new Cliente("", $nombre, $apellido, $correo, $clave, $fechaNacimiento, 0);
     $cliente -> registrar();
+    
+    $asunto = "Regitro de cliente";
+    $mensaje = "Hola " . $nombre . "\n\r";
+    $mensaje .= "Debe activar su cuenta haciendo clic en: \n\r";
+    $mensaje .= "http://cocinaetilica.itiud.org/?pid=" . base64_encode("presentacion/cliente/activarCliente.php") . "&c=" . base64_encode($correo);
+    $opciones = array(
+        "From" => "Cocina Etilica <contacto@itiud.org>",
+        "Reply-To" => "no-responder@itiud.org"
+    );
+    
+    mail($correo, $asunto, $mensaje, $opciones);
 }
 ?>
 <!DOCTYPE html>
@@ -35,11 +46,11 @@ if(isset($_POST["registrar"])){
 						<?php 
 						if(isset($_POST["registrar"])){
 						    echo "<div class='alert alert-success' role='alert'>
-                                    Cliente almacenado
+                                    Cliente almacenado. Revise el correo y active la cuenta. El correo puede llegar en spam
                                     </div>";
 						}
 						?>
-						<form method="post" action="registrarCliente.php">
+						<form method="post" action="?pid=<?php echo base64_encode("presentacion/cliente/registrarCliente.php") ?> ">
 							<div class="mb-3">
 								<input type="text" class="form-control" name="nombre"
 									placeholder="Nombre" required>

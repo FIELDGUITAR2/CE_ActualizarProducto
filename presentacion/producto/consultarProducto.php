@@ -1,5 +1,4 @@
 <?php
-require_once ("logica/Producto.php");
 $producto = new Producto();
 $productos = $producto -> consultar();
 
@@ -34,7 +33,7 @@ $admin->consultarPorId();
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Tamaño</th>
                                     <th scope="col">Precio de venta</th>
-                                    <th scope="col">imagen</th>
+                                    <th scope="col">Imagen</th>
                                     <th scope="col">Proveedor</th>
                                     <th scope="col">Tipo de Producto</th>
                                 </tr>

@@ -108,23 +108,6 @@ class Producto{
         return $productos;
     }
 
-    public function actualizarProducto()
-    {
-        $conexion = new Conexion();
-        $productoDAO = new ProductoDAO(
-            $this->id,
-            $this->nombre,
-            $this->tamano,
-            $this->precio,
-            $this->imagen,
-            $this->proveedor,
-            $this->tipoProducto
-        );
-        $conexion->abrir();
-        $conexion->ejecutar($productoDAO->actualizarProducto());
-        $conexion->cerrar();
-    }
-
 }
 
 ?>
